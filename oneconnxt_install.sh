@@ -3,7 +3,7 @@ os=$(uname -a | awk '{print $1}')
 if [ $os == 'Linux' ]; then
     brew uninstall pkg-config yasm x264 x265 fdk-aac rtmpdump
     brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
-    export PKG_CONFIG_PATH=/home/bo/.linuxbrew/lib/pkg-config
+    export PKG_CONFIG_PATH=$HOME/.linuxbrew/lib/pkg-config
 elif [ $os == "Darwin" ]; then
     brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
 fi
@@ -61,7 +61,7 @@ fi
 
 cd ..
 
-wget https://www.dropbox.com/s/5rza40qw8tzd0to/Blackmagic_DeckLink_SDK_10.4.zip?dl=1 -O /home/bo/temp/blackmagicSDK.zip
+wget https://www.dropbox.com/s/5rza40qw8tzd0to/Blackmagic_DeckLink_SDK_10.4.zip?dl=1 -O $HOME/Sources/temp/blackmagicSDK.zip
 unzip blackmagicSDK.zip
 mv Blackmagic\ DeckLink\ SDK\ 10.4 blackmagicSDK
 
