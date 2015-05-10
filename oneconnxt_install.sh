@@ -33,9 +33,9 @@ git clone git://github.com/lu-zero/bmdtools
 sudo chown $USER $home/Sources/temp/bmdtools
 cd $HOME/Sources/temp/bmdtools
 if [ $os == 'Linux' ]; then
-    sudo make SDK_PATH=/home/bo/temp/blackmagicSDK/SDK/Linux/include
+    sudo make SDK_PATH=$HOME/Sources/temp/blackmagicSDK/SDK/Linux/include
 elif [ $os == "Darwin" ]; then
-    make SDK_PATH=/home/bo/temp/blackmagicSDK/SDK/Mac/include
+    make SDK_PATH=$HOME/Sources/temp/blackmagicSDK/SDK/Mac/include
 fi
 
 
