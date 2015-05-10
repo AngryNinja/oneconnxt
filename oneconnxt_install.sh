@@ -1,10 +1,14 @@
 #!/bin/bash
+os=$(uname -a | awk '{print $1}')
+if [ $os == 'Linux' ]; then
+    brew uninstall pkg-config yasm x264 x265 fdk-aac rtmpdump
+    brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
+    export PKG_CONFIG_PATH=/home/bo/.linuxbrew/lib/pkg-config
+elif [ $os == "Darwin" ]; then
+    brew uninstall pkg-config yasm x264 x265 fdk-aac rtmpdump
+    brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
+fi
 
-
-brew uninstall pkg-config yasm x264 x265 fdk-aac rtmpdump
-brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
-
-export PKG_CONFIG_PATH=/home/bo/.linuxbrew/lib/pkg-config
 rm -rf /home/bo/temp
 mkdir /home/bo/temp
 cd temp
