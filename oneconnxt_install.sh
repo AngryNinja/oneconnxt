@@ -7,7 +7,6 @@ elif [ $os == "Darwin" ]; then
     brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
 fi
 
-rm -rf $HOME/Sources/temp
 mkdir $HOME/Sources/temp
 sudo chown $USER $HOME/Sources/temp
 cd $HOME/Sources/temp
