@@ -5,12 +5,12 @@ if [ $os == 'Linux' ]; then
     brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
     export PKG_CONFIG_PATH=/home/bo/.linuxbrew/lib/pkg-config
 elif [ $os == "Darwin" ]; then
-    brew uninstall pkg-config yasm x264 x265 fdk-aac rtmpdump
     brew install pkg-config yasm x264 x265 fdk-aac rtmpdump
 fi
 
-rm -rf /home/bo/temp
-mkdir /home/bo/temp
+rm -rf $HOME/temp
+mkdir $HOME/temp
+sudo chown $USER temp
 cd temp
 
 #git clone git://git.ffmpeg.org/rtmpdump
@@ -49,16 +49,29 @@ cd temp
 #cd ../..
 
 git clone git://github.com/libav/libav
+sudo chown $USER libav
 cd libav
 ./configure --enable-gpl --enable-nonfree  --enable-libx264 --enable-libx265 --enable-libfdk_aac
 make -j 8
-sudo make install
+if [ $os == 'Linux' ]; then
+    sudo make install
+elif [ $os == "Darwin" ]; then
+    make install
+fi
+
 cd ..
 
 wget https://www.dropbox.com/s/5rza40qw8tzd0to/Blackmagic_DeckLink_SDK_10.4.zip?dl=1 -O /home/bo/temp/blackmagicSDK.zip
 unzip blackmagicSDK.zip
 mv Blackmagic\ DeckLink\ SDK\ 10.4 blackmagicSDK
+
 git clone git://github.com/lu-zero/bmdtools
+sudo chown $USER bmdtools
 cd bmdtools
-sudo make SDK_PATH=/home/bo/temp/blackmagicSDK/SDK/Linux/include
+if [ $os == 'Linux' ]; then
+    sudo make SDK_PATH=/home/bo/temp/blackmagicSDK/SDK/Linux/include
+elif [ $os == "Darwin" ]; then
+    make SDK_PATH=/home/bo/temp/blackmagicSDK/SDK/Mac/include
+fi
+
 
